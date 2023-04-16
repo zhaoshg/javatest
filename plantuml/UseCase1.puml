@@ -1,0 +1,42 @@
+@startuml
+left to right direction
+
+actor 用户 as guest
+
+
+package 一村App {
+  usecase "登陆" as login
+  usecase "验证密码" as checkpwd
+  usecase "显示密码错误" as errorpwd
+  usecase "提现" as takecash
+  usecase "充值" as recharge
+  usecase "查看余额" as checkbalance
+'  usecase "验证资金" as uc5
+  usecase "提示资金不足" as nomoney
+}
+
+package 第三方 {
+  actor "银行" as bank
+  actor "南洋银行" as nanyang
+  actor "微信" as weixin
+}
+
+guest -> checkbalance
+guest --> takecash
+
+
+guest --> login
+login ..> checkpwd: include
+login <.. errorpwd: extends
+
+'takecash ..> uc5: include
+takecash <.. nomoney :extends
+
+guest --> recharge
+takecash ---> bank
+recharge <--- bank
+
+
+nanyang -up-|> bank
+weixin -up-|> bank
+@enduml
