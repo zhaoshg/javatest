@@ -6,9 +6,14 @@ actor 用户 as guest
 
 package 一村App {
   usecase "登陆" as login
-  usecase "查看余额" as checkbalance
-  usecase "提现" as takecash
-  usecase "充值" as recharge
+'  usecase "输入用户名密码" as loginpage
+'  note right of loginpage
+'   输入用户名密码不是一个完整的功能单元
+'   所以并不是算是一个完整的用例
+'  end note
+'  usecase "查看余额" as checkbalance
+'  usecase "提现" as takecash
+'  usecase "充值" as recharge
 '  usecase "验证密码" as checkpwd
 '  usecase "显示密码错误" as errorpwd
 '  usecase "验证资金" as uc5
@@ -21,10 +26,10 @@ package 一村App {
 '  actor "微信" as weixin
 '}
 
-guest --> checkbalance
+'guest --> checkbalance
 guest --> login
-guest --> takecash
-guest --> recharge
+'guest --> takecash
+'guest --> recharge
 
 'login .> checkpwd: include
 'login <.. errorpwd: extends
