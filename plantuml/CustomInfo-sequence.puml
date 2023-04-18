@@ -1,0 +1,45 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant 一村 as yicun
+participant 业财中台 as zt
+participant 荃银NC as nc
+actor 审核人员 as admin
+'
+'== 推送客户数据 ==
+'yicun -> yicun : 定时任务获取未推送客户
+'activate yicun
+'loop n次
+'    yicun -> zt : 推送客户信息
+'    activate zt
+'    alt 推送成功
+'        zt -->yicun : 推送成功
+'    else 某种原因失败了
+'        zt -->yicun : 返回失败原因
+'    end
+'    deactivate zt
+'end
+'deactivate yicun
+'
+'== 人工审核 ==
+'admin -> nc : 人工审核
+'activate nc
+'alt 审核通过
+'activate zt
+'        nc --> zt : 审核通过
+'    else 审核失败
+'        nc --> zt : 审核失败
+'        zt --> yicun :  推送失败原因
+'deactivate zt
+'end
+'== 查询已推送客户是否成功 ==
+'yicun -> zt : 定时任务获取增量客户
+'activate yicun
+'activate zt
+'loop n次
+'    yicun -> yicun : 更新客户推送标记/信息
+'end
+'deactivate yicun
+'deactivate zt
+
+@enduml

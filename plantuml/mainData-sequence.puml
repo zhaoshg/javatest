@@ -1,0 +1,26 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+actor 用户 as user
+participant 一村 as yicun
+participant 业财中台 as zt
+'
+'
+'user -> yicun : <<编辑主数据>>
+'activate yicun
+'yicun -> zt : 推送主数据
+'activate zt
+'zt -->yicun : 推送结果
+'
+'yicun --> user : 展示结果
+'deactivate yicun
+'zt ->> nc ** : 尝试匹配
+'activate nc
+'alt 匹配成功
+'    nc --> zt : 成功
+'else 匹配失败
+'    nc --> zt : 请人工匹配
+'end
+'deactivate nc
+'deactivate zt
+@enduml
