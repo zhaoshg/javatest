@@ -31,6 +31,7 @@ actor 审核人员 as admin
 '        nc --> zt : 审核失败
 '        zt --> yicun :  推送失败原因
 'deactivate zt
+'deactivate nc
 'end
 '== 查询已推送客户是否成功 ==
 'yicun -> zt : 定时任务获取增量客户
