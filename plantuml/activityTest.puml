@@ -1,0 +1,26 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+if(今日售粮是否超限) then (true)
+    stop;
+else (no)
+    if(售粮人==代办人?) then (true)
+        if(基地是否开启代办签章) then (true)
+            :调用cfca生成授权书;
+            :设置订单授权状态;
+        else (no)
+        endif;
+        if(代办人数据是否同步) then (no)
+            :从平台用户同步代办人信息;
+        else (yes)
+        endif;
+    else (no)
+    endif
+    if(售粮人数据是否同步) then (no)
+        :从平台用户同步售粮人信息;
+    endif
+    :生成订单;
+stop
+
+@enduml
