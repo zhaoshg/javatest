@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/state-diagram
+
+scale 550 width
+[*] --> 进行中: 制卡
+
+进行中 --> 拒收 : 质检不通过
+拒收 --> [*]
+进行中 --> 进行中 : 质检通过/出入磅
+note left of 进行中
+   如果开启自动加扣,
+   则出榜后即变为待确认
+end note
+进行中 --> 待确认 : 加扣/出磅
+note left of 待确认
+   如果开启自动加扣,
+   则出榜后即变为待确认
+end note
+待确认 --> 待付款 : 现场确认
+待付款 --> 已完成 : 付款
+已完成 --> [*]
+@enduml
