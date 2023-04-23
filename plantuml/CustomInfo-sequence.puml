@@ -1,11 +1,11 @@
 @startuml
 'https://plantuml.com/sequence-diagram
-
+scale 750 width
 participant 一村 as yicun
 participant 业财中台 as zt
 participant 荃银NC as nc
 actor 审核人员 as admin
-'
+
 '== 推送客户数据 ==
 'yicun -> yicun : 定时任务获取未推送客户
 'activate yicun

@@ -1,11 +1,12 @@
 @startuml
 'https://plantuml.com/sequence-diagram
+scale 750 width
 
 actor 用户 as user
 participant 一村 as yicun
 participant 业财中台 as zt
-'
-'
+
+
 'user -> yicun : <<编辑主数据>>
 'activate yicun
 'yicun -> zt : 推送主数据
