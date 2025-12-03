@@ -15,6 +15,10 @@ participant 业财中台 as zt
 '
 'yicun --> user : 展示结果
 'deactivate yicun
+'
+''== 下面是异步的 ==
+''note over zt : 这里开始异步处理
+'
 'zt ->> nc ** : 尝试匹配
 'activate nc
 'alt 匹配成功
